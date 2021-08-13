@@ -1,5 +1,5 @@
 #PoopCraft - by sn3akrr
-language: "eng"
+language: "eng" #Only supported language so far
 
 poop: true #Allow players to use /poop
 

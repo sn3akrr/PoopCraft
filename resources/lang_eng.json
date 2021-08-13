@@ -1,8 +1,6 @@
 {
 	"language": "eng",
 	"messages": {
-		"plugin.enabled": "Poop plugin has been enabled!",
-
 		"command.nopermission": "You do not have permission to poop!",
 		"command.notplayer": "Only players can poop!",
 		"command.sneak.nopermission": "You cannot enable poop sneaking!",

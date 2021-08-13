@@ -4,9 +4,9 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\item\Item;
 
-use poop\command\PoopCommand;
+use sn3akrr\poop\command\PoopCommand;
 
-use poop\utils\{
+use sn3akrr\poop\utils\{
 	PoopTicker,
 	PoopPool
 };
@@ -41,8 +41,6 @@ class PoopCraft extends PluginBase{
 		$this->pool = new PoopPool($this);
 
 		$this->getScheduler()->scheduleRepeatingTask(new PoopTask($this), 1);
-
-		$this->getLogger()->notice($this->getMessage("plugin.enabled"));
 	}
 
 	public function getDefaultTicker() : PoopTicker{

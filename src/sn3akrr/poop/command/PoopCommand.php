@@ -7,7 +7,7 @@ use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 
-use poop\PoopCraft;
+use sn3akrr\poop\PoopCraft;
 
 class PoopCommand extends Command implements PluginIdentifiableCommand{
 

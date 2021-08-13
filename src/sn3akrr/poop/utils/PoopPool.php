@@ -6,7 +6,7 @@ use pocketmine\{
 };
 use pocketmine\utils\TextFormat;
 
-use poop\PoopCraft;
+use sn3akrr\poop\PoopCraft;
 
 class PoopPool{
 
