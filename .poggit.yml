@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/sn3akrr/PoopCraft
+build-by-default: true
+branches:
+- master
+projects:
+  PoopCraft:
+    path: ""
+...
