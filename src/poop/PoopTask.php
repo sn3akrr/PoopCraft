@@ -4,6 +4,8 @@ use pocketmine\scheduler\Task;
 
 class PoopTask extends Task{
 
+	public $plugin;
+	
 	public function __construct(PoopCraft $plugin){
 		$this->plugin = $plugin;
 	}

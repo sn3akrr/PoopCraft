@@ -38,9 +38,9 @@ class PoopTicker{
 	/**
 	 * Returns the default max tick rate of pooping (For sneak mode too)
 	 *
-	 * @return int
+	 * @return float
 	 */
-	public function getRate() : int{
+	public function getRate() : float{
 		return $this->rate;
 	}
 
