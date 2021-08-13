@@ -1,4 +1,4 @@
-<?php namespace poop;
+<?php namespace sn3akrr\poop;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
@@ -27,7 +27,7 @@ class PoopCraft extends PluginBase{
 	public $pool;
 
 	public function onEnable(){
-		$this->getServer()->getCommandMap()->register("poop", new PoopCommand($this, "poop", "Poop!"));
+		$this->getServer()->getCommandMap()->register("PoopCraft", new PoopCommand($this, "poop", "Poop!"));
 
 		$this->saveDefaultConfig();
 		$this->lang = $this->getConfig()->get("language");

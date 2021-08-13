@@ -1,4 +1,4 @@
-<?php namespace poop\utils;
+<?php namespace sn3akrr\poop\utils;
 
 class PoopTicker{
 

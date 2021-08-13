@@ -3,7 +3,7 @@ description: Poop, now available on PocketMine-MP
 author: sn3akrr
 version: 1.0.0-ALPHA
 api: [3.0.0]
-main: poop\PoopCraft
+main: sn3akrr\poop\PoopCraft
 load: STARTUP
 
 permissions:

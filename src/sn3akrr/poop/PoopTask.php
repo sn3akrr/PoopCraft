@@ -1,4 +1,4 @@
-<?php namespace poop;
+<?php namespace sn3akrr\poop;
 
 use pocketmine\scheduler\Task;
 

@@ -1,4 +1,4 @@
-<?php namespace poop\command;
+<?php namespace sn3akrr\poop\command;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
