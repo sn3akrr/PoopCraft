@@ -9,7 +9,7 @@ class PoopTicker{
 	/** @var float */
 	public $force = 0.4;
 
-	/** @var int */
+	/** @var float */
 	public $rate = 10;
 
 	/** @var bool */
