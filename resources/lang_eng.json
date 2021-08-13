@@ -1,0 +1,21 @@
+{
+	"language": "eng",
+	"messages": {
+		"plugin.enabled": "Poop plugin has been enabled!",
+
+		"command.nopermission": "You do not have permission to poop!",
+		"command.notplayer": "Only players can poop!",
+		"command.sneak.nopermission": "You cannot enable poop sneaking!",
+		"command.sneak.enabled": "You will now poop out the item you are holding when you sneak!",
+		"command.sneak.disabled": "You will no longer poop when you sneak",
+
+		"command.hand.nopermission": "You do not have permission to poop out the item in your hand!",
+		"command.hand.noitem": "No item in your hand to poop out...",
+		"command.hand.success": "Successfully pooped out item in your hand! Dat poop stank",
+
+		"command.inventory.nopermission": "You do not have permission to poop our your inventory!",
+		"command.inventory.enabled": "You will now poop out your whole inventory. Might need some toilet paper...",
+		"command.inventory.disabled": "You will no longer poop out your inventory",
+		"command.inventory.done": "You have pooped out your whole inventory. Don't forget to wipe"
+	}
+}

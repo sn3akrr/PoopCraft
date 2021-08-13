@@ -1,0 +1,21 @@
+name: PoopCraft
+description: Poop, now available on PocketMine-MP
+author: sn3akrr
+version: 1.0.0-ALPHA
+api: [3.0.0]
+main: poop\PoopCraft
+load: STARTUP
+
+permissions:
+ poop.command:
+  description: Poop command access
+  default: true
+ poop.sneak:
+  description: Sneak poop mode
+  default: op
+ poop.hand:
+  description: Poop out item in hand
+  default: op
+ poop.all:
+  description: Poop out whole inventory
+  default: op

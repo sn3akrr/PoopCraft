@@ -1,0 +1,17 @@
+#PoopCraft - by sn3akrr
+language: "eng"
+
+poop: true #Allow players to use /poop
+
+poop-sneak: true #Allow players to use /poop sneak
+poop-hand: true #Allow players to use /poop hand
+poop-all: true #Allow players to poop out their whole inventory
+
+#Default force the poop shoots
+force: 0.5
+
+#Max tick rate of poop shooting
+rate: 5
+
+#Whether or not you can poop out stacks or singular items
+stacks: false
