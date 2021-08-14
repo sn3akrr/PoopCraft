@@ -49,9 +49,9 @@ class PoopPool{
 					}
 					$this->plugin->poop($player, $item, $ticker);
 					$player->getInventory()->removeItem($item);
-				}else{
-					$ticker->sneaking = false;
 				}
+			}else{
+				$ticker->sneaking = false;
 			}
 		}
 
