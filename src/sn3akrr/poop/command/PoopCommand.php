@@ -16,7 +16,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 	public function __construct(PoopCraft $plugin, $name, $description){
 		$this->plugin = $plugin;
 		parent::__construct($name, $description);
-		$this->setPermission("poop.command");
+		$this->setPermission("poopcraft.command");
 		$this->setAliases(["poo"]);
 	}
 
