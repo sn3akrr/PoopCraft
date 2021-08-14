@@ -19,3 +19,6 @@ permissions:
  poop.all:
   description: Poop out whole inventory
   default: op
+ poop.jetpack:
+  description: Poop jetpack
+  default: op

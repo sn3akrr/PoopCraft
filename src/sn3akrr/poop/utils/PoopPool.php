@@ -16,6 +16,8 @@ class PoopPool{
 	public $poopSneak = [];
 	/** @var array */
 	public $poopAll = [];
+	/** @var array */
+	public $poopPack = [];
 
 	public function __construct(PoopCraft $plugin){
 		$this->plugin = $plugin;
@@ -30,6 +32,16 @@ class PoopPool{
 			}
 
 			if($player->isSneaking()){
+				if(empty($player->getInventory()->getContents())) continue;
+				if(!$ticker->sneaking){
+					$ticker->sneaking = true;
+					$item = clone $player->getInventory()->getItemInHand();
+					if(!$ticker->poopStacks()){
+						$item->setCount(1);
+					}
+					$this->plugin->poop($player, $item, $ticker);
+					$player->getInventory()->removeItem($item);
+				}
 				if($ticker->tick()){
 					$item = clone $player->getInventory()->getItemInHand();
 					if(!$ticker->poopStacks()){
@@ -37,6 +49,8 @@ class PoopPool{
 					}
 					$this->plugin->poop($player, $item, $ticker);
 					$player->getInventory()->removeItem($item);
+				}else{
+					$ticker->sneaking = false;
 				}
 			}
 		}
@@ -62,6 +76,35 @@ class PoopPool{
 					$this->plugin->poop($player, $item, $ticker);
 					$player->getInventory()->removeItem($item);
 					break;
+				}
+			}
+		}
+
+		foreach($this->poopPack as $name => $ticker){
+			$player = Server::getInstance()->getPlayerExact($name);
+			if(!$player instanceof Player){
+				unset($this->poopPack[$name]);
+				continue;
+			}
+
+			if($player->isSneaking()){
+				$player->setMotion($player->getDirectionVector()->multiply($ticker->getJetpackForce()));
+				$player->resetFallDistance();
+				if($ticker->tick()){
+					if(empty($player->getInventory()->getContents())){
+						unset($this->poopPack[$name]);
+						$player->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.jetpack.empty"));
+						continue;
+					}
+					foreach($player->getInventory()->getContents() as $item){
+						$item = clone $item;
+						if(!$ticker->poopStacks()){
+							$item->setCount(1);
+						}
+						$this->plugin->poop($player, $item, $ticker);
+						$player->getInventory()->removeItem($item);
+						break;
+					}
 				}
 			}
 		}
@@ -97,6 +140,22 @@ class PoopPool{
 
 	public function removePoopInventory(Player $player) : void{
 		unset($this->poopAll[$player->getName()]);
+	}
+
+	public function getPoopPacks() : array{
+		return $this->poopPack;
+	}
+
+	public function addPoopPack(Player $player, ?PoopTicker $settings = null) : void{
+		$this->poopPack[$player->getName()] = ($settings ?? $this->plugin->getDefaultTicker());
+	}
+
+	public function removePoopPack(Player $player) : void{
+		unset($this->poopPack[$player->getName()]);
+	}
+
+	public function getPoopPack(Player $player) : ?PoopTicker{
+		return $this->poopPack[$player->getName()] ?? null;
 	}
 
 }

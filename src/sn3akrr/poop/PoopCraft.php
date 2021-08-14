@@ -3,6 +3,7 @@
 use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\item\Item;
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 
 use sn3akrr\poop\command\PoopCommand;
 
@@ -20,6 +21,8 @@ class PoopCraft extends PluginBase{
 	/** @var array */
 	public $langData = [];
 
+	public $poopSound;
+
 	/** @var PoopTicker */
 	public $defaultTicker;
 
@@ -27,19 +30,24 @@ class PoopCraft extends PluginBase{
 	public $pool;
 
 	public function onEnable(){
-		$this->getServer()->getCommandMap()->register("PoopCraft", new PoopCommand($this, "poop", "Poop!"));
-
 		$this->saveDefaultConfig();
-		$this->lang = $this->getConfig()->get("language");
+		$this->lang = $this->getConfig()->get("language", "eng");
 		$this->setupLanguageData();
 
+		$pk = new PlaySoundPacket();
+		$pk->soundName = $this->getConfig()->get("poop-sound", "none");
+		$pk->volume = 100;
+		$pk->pitch = 1;
+		$this->poopSound = $pk;
+
 		$this->defaultTicker = new PoopTicker(
-			$this->getConfig()->get("force"),
-			$this->getConfig()->get("rate"),
+			$this->getConfig()->get("force", 0.5),
+			$this->getConfig()->get("rate", 5),
 			$this->getConfig()->get("stacks")
 		);
 		$this->pool = new PoopPool($this);
 
+		$this->getServer()->getCommandMap()->register("PoopCraft", new PoopCommand($this, "poop", "Poop!"));
 		$this->getScheduler()->scheduleRepeatingTask(new PoopTask($this), 1);
 	}
 
@@ -57,6 +65,15 @@ class PoopCraft extends PluginBase{
 		$dv = $player->getDirectionVector()->multiply($ticker->getForce());
 		$dv->x = -$dv->x; $dv->y = 0; $dv->z = -$dv->z;
 
+		$sound = $this->poopSound;
+		if($sound->soundName != "none"){
+			$sound->x = $player->getX();
+			$sound->y = $player->getY();
+			$sound->z = $player->getZ();
+			foreach(array_merge([$player], $player->getViewers()) as $viewer){
+				$player->dataPacket($sound);
+			}
+		}
 		$player->getLevel()->dropItem($player->asVector3()->add(0, self::BUTTHOLE_HEIGHT, 0), $item, $dv);
 	}
 

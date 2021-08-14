@@ -2,16 +2,19 @@
 language: "eng" #Only supported language so far
 
 poop: true #Allow players to use /poop
+poop-sound: "random.pop" #Set to none to disable
 
 poop-sneak: true #Allow players to use /poop sneak
 poop-hand: true #Allow players to use /poop hand
 poop-all: true #Allow players to poop out their whole inventory
+poop-jetpack: true #Allow players to use /poop jetpack
 
-#Default force the poop shoots
+#Force the poop shoots
 force: 0.5
-
 #Max tick rate of poop shooting
 rate: 5
-
 #Whether or not you can poop out stacks or singular items
 stacks: false
+
+#Poop jetpack flight force
+jetpack-force: 0.5

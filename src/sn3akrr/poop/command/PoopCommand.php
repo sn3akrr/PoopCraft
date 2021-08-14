@@ -107,6 +107,10 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.inventory.nopermission"));
 					return;
 				}
+				if(empty($sender->getInventory()->getContents())){
+					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.inventory.noitems"));
+					return;
+				}
 				$ticker = $pool->getPoopInventory($sender);
 				if($ticker !== null){
 					$pool->removePoopInventory($sender);
@@ -117,6 +121,33 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 					($ticker !== null ?
 						$this->plugin->getMessage("command.inventory.disabled") :
 						$this->plugin->getMessage("command.inventory.enabled")
+					)
+				);
+				break;
+
+			case "pack":
+			case "jetpack":
+				if(
+					!$this->plugin->getConfig()->get("poop-jetpack") &&
+					!$sender->hasPermission("poop.jetpack")
+				){
+					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.jetpack.nopermission"));
+					return;
+				}
+				if(empty($sender->getInventory()->getContents())){
+					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.jetpack.noitems"));
+					return;
+				}
+				$ticker = $pool->getPoopPack($sender);
+				if($ticker !== null){
+					$pool->removePoopPack($sender);
+				}else{
+					$pool->addPoopPack($sender);
+				}
+				$sender->sendMessage(TextFormat::GREEN .
+					($ticker !== null ?
+						$this->plugin->getMessage("command.jetpack.disabled") :
+						$this->plugin->getMessage("command.jetpack.enabled")
 					)
 				);
 				break;

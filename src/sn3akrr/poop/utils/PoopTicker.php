@@ -2,8 +2,9 @@
 
 class PoopTicker{
 
+	/** @var int */
 	public $ticks = 0;
-
+	/** @var bool */
 	public $sneaking = false;
 
 	/** @var float */
@@ -15,10 +16,19 @@ class PoopTicker{
 	/** @var bool */
 	public $stacks = false;
 
-	public function __construct(float $force = 0.4, float $rate = 10, bool $stacks = false){
+	/** @var float */
+	public $jetpackForce = 0.5;
+
+	public function __construct(
+		float $force = 0.4,
+		float $rate = 10,
+		bool $stacks = false,
+		float $jetpackForce = 0.5
+	){
 		$this->force = $force;
 		$this->rate = $rate;
 		$this->stacks = $stacks;
+		$this->jetpackForce = $jetpackForce;
 	}
 
 	public function tick() : bool{
@@ -51,6 +61,15 @@ class PoopTicker{
 	 */
 	public function poopStacks() : bool{
 		return $this->stacks;
+	}
+
+	/**
+	 * Returns the force at which poop jetpack will carry player
+	 *
+	 * @return float
+	 */
+	public function getJetpackForce() : float{
+		return $this->jetpackForce;
 	}
 
 }
