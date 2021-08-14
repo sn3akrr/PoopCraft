@@ -7,18 +7,18 @@ main: sn3akrr\poop\PoopCraft
 load: STARTUP
 
 permissions:
- poop.command:
+ poopcraft.command:
   description: Poop command access
   default: true
- poop.sneak:
+ poopcraft.command.sneak:
   description: Sneak poop mode
   default: op
- poop.hand:
+ poopcraft.command.hand:
   description: Poop out item in hand
   default: op
- poop.all:
+ poopcraft.command.all:
   description: Poop out whole inventory
   default: op
- poop.jetpack:
+ poopcraft.command.jetpack:
   description: Poop jetpack
   default: op

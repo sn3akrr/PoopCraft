@@ -27,7 +27,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 		}
 		if(
 			!$sender->isOp() && (
-				!$sender->hasPermission("poop.command") ||
+				!$sender->hasPermission("poopcraft.command") ||
 				!$this->plugin->getConfig()->get("poop")
 			)
 		){
@@ -58,7 +58,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 			case "sneak":
 				if(
 					!$this->plugin->getConfig()->get("poop-sneak") &&
-					!$sender->hasPermission("poop.sneak")
+					!$sender->hasPermission("poopcraft.command.sneak")
 				){
 					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.sneak.nopermission"));
 					return;
@@ -79,7 +79,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 			case "hand":
 				if(
 					!$this->plugin->getConfig()->get("poop-hand") &&
-					!$sender->hasPermission("poop.hand")
+					!$sender->hasPermission("poopcraft.command.hand")
 				){
 					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.hand.nopermission"));
 					return;
@@ -102,7 +102,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 			case "inventory":
 				if(
 					!$this->plugin->getConfig()->get("poop-all") &&
-					!$sender->hasPermission("poop.all")
+					!$sender->hasPermission("poopcraft.command.all")
 				){
 					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.inventory.nopermission"));
 					return;
@@ -129,7 +129,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 			case "jetpack":
 				if(
 					!$this->plugin->getConfig()->get("poop-jetpack") &&
-					!$sender->hasPermission("poop.jetpack")
+					!$sender->hasPermission("poopcraft.command.jetpack")
 				){
 					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.jetpack.nopermission"));
 					return;
