@@ -1,1 +1,27 @@
-{}
+{
+	"language": "vie",
+	"messages": {
+		"command.nopermission": "Bạn không có quyền để đi ị!",
+		"command.notplayer": "Chỉ có người chơi mới có thể đi ị!",
+
+		"command.sneak.nopermission": "Bạn không thể ngồi để đi ị!",
+		"command.sneak.enabled": "Bạn giờ sẽ ị ra vật phẩm đang cầm trên tay khi bạn ngồi!",
+		"command.sneak.disabled": "Bạn giờ sẽ không còn ị ra vật phẩm khi bạn ngồi",
+
+		"command.hand.nopermission": "Bạn không có quyền để ị ra vật phẩm khi bạn!",
+		"command.hand.noitem": "Không có vật phẩm nào trong tay để ị ra ngooài...",
+		"command.hand.success": "Đã ị ra vật phẩm đang cầm trong tay của bạn! Cục kít đó thúi quá",
+
+		"command.inventory.nopermission": "Bạn không có quyền để ị ra cả túi đồ của bạn!",
+		"command.inventory.noitems": "Không có vật phẩm nào trong túi đồ của bạn để ị ra ngoài...",
+		"command.inventory.enabled": "Bạn giờ sẽ ị cả túi đồ của bạn. Bạn sẽ cần giấy vệ sinh đấy...",
+		"command.inventory.disabled": "Bạn giờ sẽ không còn ị cả túi đồ của bạn",
+		"command.inventory.done": "Bạn đã ị tất cả vật phẩm trong túi đồ của bạn. Đừng quên rửa tay nha bạn",
+
+		"command.jetpack.nopermission": "Bạn không có quyền để kíck hoạt phản lực đi ị!",
+		"command.jetpack.noitems": "Không có vật phẩm nào trong túi đồ của bạn để ị ra ngoài...",
+		"command.jetpack.empty": "Năng lực đi ị trong phản lực của bạn đã hết",
+		"command.jetpack.enabled": "Đã kích hoạt phản lực đi ị! Ngồi để bay",
+		"command.jetpack.diabled": "Đã vô hiệu hóa phản lực đi ị"
+	}
+}
