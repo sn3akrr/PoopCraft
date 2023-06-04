@@ -2,7 +2,7 @@
 
 use pocketmine\{
 	Server,
-	Player
+	player\Player
 };
 use pocketmine\utils\TextFormat;
 
@@ -10,17 +10,13 @@ use sn3akrr\poop\PoopCraft;
 
 class PoopPool{
 
-	public $plugin;
+	public array $poopSneak = [];
 
-	/** @var array */
-	public $poopSneak = [];
-	/** @var array */
-	public $poopAll = [];
-	/** @var array */
-	public $poopPack = [];
+	public array $poopAll = [];
 
-	public function __construct(PoopCraft $plugin){
-		$this->plugin = $plugin;
+	public array $poopPack = [];
+
+	public function __construct(public PoopCraft $plugin){
 	}
 
 	public function tick() : void{

@@ -4,13 +4,11 @@ use pocketmine\scheduler\Task;
 
 class PoopTask extends Task{
 
-	public $plugin;
 
-	public function __construct(PoopCraft $plugin){
-		$this->plugin = $plugin;
+	public function __construct(public PoopCraft $plugin){
 	}
 
-	public function onRun(int $currentTick){
+	public function onRun() : void{
 		$this->plugin->getPoopPool()->tick();
 	}
 
