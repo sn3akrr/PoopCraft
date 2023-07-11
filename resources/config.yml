@@ -1,5 +1,5 @@
 #PoopCraft - by sn3akrr
-language: "eng" #Only supported language so far
+language: "eng" #Available languages: eng, vie
 
 poop: true #Allow players to use /poop
 poop-sound: "random.pop" #Set to none to disable

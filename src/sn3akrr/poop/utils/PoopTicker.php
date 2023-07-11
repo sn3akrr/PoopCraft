@@ -2,33 +2,16 @@
 
 class PoopTicker{
 
-	/** @var int */
-	public $ticks = 0;
-	/** @var bool */
-	public $sneaking = false;
+	public int $ticks = 0;
 
-	/** @var float */
-	public $force = 0.4;
-
-	/** @var float */
-	public $rate = 10;
-
-	/** @var bool */
-	public $stacks = false;
-
-	/** @var float */
-	public $jetpackForce = 0.5;
+	public bool $sneaking = false;
 
 	public function __construct(
-		float $force = 0.4,
-		float $rate = 10,
-		bool $stacks = false,
-		float $jetpackForce = 0.5
+		public float $force = 0.4,
+		public float $rate = 10,
+		public bool $stacks = false,
+		public float $jetpackForce = 0.5
 	){
-		$this->force = $force;
-		$this->rate = $rate;
-		$this->stacks = $stacks;
-		$this->jetpackForce = $jetpackForce;
 	}
 
 	public function tick() : bool{

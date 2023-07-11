@@ -1,20 +1,19 @@
 <?php namespace sn3akrr\poop\command;
 
+use pocketmine\block\BlockTypeIds;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\PluginIdentifiableCommand;
-use pocketmine\Player;
+use pocketmine\permission\DefaultPermissions;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 use pocketmine\utils\TextFormat;
 
 use sn3akrr\poop\PoopCraft;
 
-class PoopCommand extends Command implements PluginIdentifiableCommand{
+class PoopCommand extends Command implements PluginOwned{
 
-	public $plugin;
-
-	public function __construct(PoopCraft $plugin, $name, $description){
-		$this->plugin = $plugin;
+	public function __construct(public PoopCraft $plugin, $name, $description){
 		parent::__construct($name, $description);
 		$this->setPermission("poopcraft.command");
 		$this->setAliases(["poo"]);
@@ -26,7 +25,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 			return;
 		}
 		if(
-			!$sender->isOp() && (
+			!$sender->hasPermission(DefaultPermissions::ROOT_OPERATOR) && (
 				!$sender->hasPermission("poopcraft.command") ||
 				!$this->plugin->getConfig()->get("poop")
 			)
@@ -86,7 +85,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 				}
 				$ticker = $this->plugin->getDefaultTicker();
 				$item = clone $sender->getInventory()->getItemInHand();
-				if($item->getId() == 0){
+				if($item->getTypeId() == BlockTypeIds::AIR){
 					$sender->sendMessage(TextFormat::RED . $this->plugin->getMessage("command.hand.noitem"));
 					return;
 				}
@@ -154,7 +153,7 @@ class PoopCommand extends Command implements PluginIdentifiableCommand{
 		}
 	}
 
-	public function getPlugin() : Plugin{
+	public function getOwningPlugin() : Plugin{
 		return $this->plugin;
 	}
 

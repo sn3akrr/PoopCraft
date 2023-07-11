@@ -1,7 +1,7 @@
 <?php namespace sn3akrr\poop;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\item\Item;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 
@@ -16,29 +16,20 @@ class PoopCraft extends PluginBase{
 
 	const BUTTHOLE_HEIGHT = 0.35;
 
-	/** @var string */
-	public $lang;
-	/** @var array */
-	public $langData = [];
+	public string $lang;
+
+	public array $langData = [];
 
 	public $poopSound;
 
-	/** @var PoopTicker */
-	public $defaultTicker;
+	public PoopTicker $defaultTicker;
 
-	/** @var PoopPool */
-	public $pool;
+	public PoopPool $pool;
 
-	public function onEnable(){
+	protected function onEnable() : void{
 		$this->saveDefaultConfig();
 		$this->lang = $this->getConfig()->get("language", "eng");
 		$this->setupLanguageData();
-
-		$pk = new PlaySoundPacket();
-		$pk->soundName = $this->getConfig()->get("poop-sound", "none");
-		$pk->volume = 100;
-		$pk->pitch = 1;
-		$this->poopSound = $pk;
 
 		$this->defaultTicker = new PoopTicker(
 			$this->getConfig()->get("force", 0.5),
@@ -65,16 +56,22 @@ class PoopCraft extends PluginBase{
 		$dv = $player->getDirectionVector()->multiply($ticker->getForce());
 		$dv->x = -$dv->x; $dv->y = 0; $dv->z = -$dv->z;
 
-		$sound = $this->poopSound;
-		if($sound->soundName != "none"){
-			$sound->x = $player->getX();
-			$sound->y = $player->getY();
-			$sound->z = $player->getZ();
+		$sound = $this->getConfig()->get("poop-sound", "none");
+		if($sound != "none"){
+			$playerPos = $player->getPosition();
+			$pk = PlaySoundPacket::create(
+				soundName: $sound,
+				x: $playerPos->getX(),
+				y: $playerPos->getY(),
+				z: $playerPos->getZ(),
+				volume: 100.0,
+				pitch: 1.0
+			);
 			foreach(array_merge([$player], $player->getViewers()) as $viewer){
-				$player->dataPacket($sound);
+				$viewer->getNetworkSession()->sendDataPacket($pk);
 			}
 		}
-		$player->getLevel()->dropItem($player->asVector3()->add(0, self::BUTTHOLE_HEIGHT, 0), $item, $dv);
+		$player->getWorld()->dropItem($player->getPosition()->asVector3()->add(0, self::BUTTHOLE_HEIGHT, 0), $item, $dv);
 	}
 
 	public function setupLanguageData() : int{
